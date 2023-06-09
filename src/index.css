@@ -1,106 +1,169 @@
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Encode+Sans&family=Lato&family=Oswald&family=Roboto&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: #015539;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+
+.background_card {
+  background-color: #015539;
+
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
-
-
-.bg-green{
+.bg-green {
   background-color: #005F40;
-  
+
 }
 
 
-.container_carrito{
+.container_carrito {
   display: flex !important;
   align-items: center;
 }
 
-.carrito{
+.carrito {
   display: flex !important;
   align-items: center !important;
-  
-  all:unset;
-  border:3px solid #6db088;
+
+  all: unset;
+  border: 3px solid #6db088;
   border-radius: 10px;
   margin-left: 5px;
-  padding-left: 5px ;
-  padding-right: 20px ;
+  padding-left: 5px;
+  padding-right: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
   transition: background-color 0.2s ease;
 }
-.carrito:hover{
+
+.carrito:hover {
   background-color: #2E794D;
 }
-.num_carrito{
+
+.num_carrito {
   padding-left: 10px;
   padding-top: 10px;
   align-items: center !important;
   font-size: 20px;
   color: #ebf8e4;
+}
+
+.header {
+  position: relative;
+}
+
+.header_p {
+  position: absolute;
+  top: 30%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 5px rgb(3, 57, 232);
+  font-family: 'Roboto', sans-serif;
+}
+
+.header_p h1 {
+  font-size: 4em;
+  margin: 0;
+}
+
+.header_p h2 {
+  font-size: 2em;
+  margin: 0;
+}
+
+
+.header_img {
+  width: 100%;
+
+}
+
+.card_img {
+  width: 100%;
+  height: 15rem;
+
+}
+
+.card_header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 35px;
+
+}
+
+.card-body {
+  background-color: #01551129;
+}
+
+.card-text {
+  font-family: 'Encode Sans', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.card-title {
+  font-family: 'Cabin', sans-serif;
+
+}
+
+.card_price {
+  font-family: Encode Sans, sans-serif;
+  font-style: normal;
+  font-weight: 600 !important;
+  font-size: 21px !important;
+  line-height: 41px;
+  color: #324545;
+  padding-left: 0.5rem;
+}
+
+.button_card {
+
+  font-size: 1rem;
+  line-height: 1;
+  padding-left: 10px;
+  margin-left: 30px;
+  margin-top: 0;
+  background-color: #324545;
+  border-color: #324545;
+  border-radius: 100px;
+  transition: .3s;
+  font-family: 'Lato', sans-serif;
+}
+
+.button_card2 {
+  font-size: 1rem;
+  line-height: 1;
+  padding-left: 10px;
+  margin-left: 38px;
+  margin-top: 5px;
+  background-color: #698d6f;
+  border-color: #698d6f;
+  border-radius: 100px;
+  transition: .3s;
+  font-family: 'Lato', sans-serif;
+}
+
+.main_text {
+  text-transform: uppercase;
+  font-family: Encode Sans, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: clamp(21px, 2.5vw, 2rem);
+  line-height: 42px;
+  color: #aebead;
+  width: 100%;
+  padding: 2rem 1rem 0 0;
+}
+
+.main_p {
+  font-family: Encode Sans, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: #f0f5f5;
+  width: 90%;
+  /* margin: 0 0 0 1rem; */
 }
