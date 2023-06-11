@@ -14,7 +14,7 @@ const ItemList = ({ orchid }) => {
                 <p className='main_p' >Descubre flores y plantas para regalar o decorar</p>
             </div>
             <Row>
-                {orchid.map((orchid) => (
+                {orchid?.map((orchid) => (
                     <Col key={orchid.id} sm={6} md={4} lg={3}>
                         <Item
                             
@@ -24,7 +24,7 @@ const ItemList = ({ orchid }) => {
                             price={orchid.price}
                             img={orchid.img}
                             stock={orchid.stock}
-                            category={orchid.categoria}
+                            category={orchid.category}
                         />
                     </Col>
                 ))}

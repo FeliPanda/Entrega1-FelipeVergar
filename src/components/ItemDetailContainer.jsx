@@ -1,34 +1,33 @@
-import React from 'react'
-import data from "../data.json"
-import ItemList from './ItemList';
+import React, { useState, useEffect } from 'react'
+import { useParams } from "react-router-dom"
+import Data from "../data.json"
+import ItemDetail from './ItemDetail';
 
-const ItemListContainer = () => {
-    const getData = () =>{
-        return new Promise ((resolve, reject)=>{
-            if (data.length ===0){
-                reject(new Error("no data"))
+const ItemDetailContainer = () => {
+
+    const {  id } = useParams();
+    const [orchids, setOrchids] = useState([])
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await fetch(Data);
+                const data = await response.json();
+                setOrchids(data);
+            } catch (error) {
+                console.log(error);
+                setError('Error al obtener los datos.');
             }
-            setTimeout(()=> {
-                resolve (data);
-            },2000);
-        });
-    };
-    
-    async function fetchingData(){
-        try{
-            const dataFetched = await getData();
-        }catch (err){
-            console.log(err.message);
         }
-    }
+        fetchData();
+    }, []);
 
-    fetchingData();
+    const orchFilter = orchids.filter((orc) => orc.id === id)
 
-    return (
-        <>  
-            <ItemList orchid={data} />
-        </>
-    );
-};
+    return <ItemDetail orchids={orchFilter} />;
 
-export default ItemListContainer;
+}
+
+export default ItemDetailContainer
+
