@@ -5,9 +5,10 @@ import ItemDetail from './ItemDetail';
 
 const ItemDetailContainer = () => {
 
-    const {  id } = useParams();
+    const { id } = useParams();
     const [orchids, setOrchids] = useState([])
     const [error, setError] = useState(null);
+    
 
     useEffect(() => {
         async function fetchData() {
@@ -16,18 +17,24 @@ const ItemDetailContainer = () => {
                 const data = await response.json();
                 setOrchids(data);
             } catch (error) {
-                console.log(error);
+
                 setError('Error al obtener los datos.');
             }
         }
         fetchData();
     }, []);
 
-    const orchFilter = orchids.filter((orc) => orc.id === id)
+    // const idFilter = id
+    const orchFilter = Data.filter((orc) => orc.id ==id )
+    
+    return (
+        <ItemDetail orchids={orchFilter}
+    
+        />
+    );
+};
 
-    return <ItemDetail orchids={orchFilter} />;
-
-}
 
 export default ItemDetailContainer
+
 
