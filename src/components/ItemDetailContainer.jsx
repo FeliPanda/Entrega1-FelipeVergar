@@ -1,40 +1,31 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom"
-import Data from "../data.json"
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { db } from './firebase/firebaseConfig';
+import { collection, query, getDocs, where, documentId } from 'firebase/firestore';
 import ItemDetail from './ItemDetail';
 
 const ItemDetailContainer = () => {
-
     const { id } = useParams();
-    const [orchids, setOrchids] = useState([])
-    const [error, setError] = useState(null);
-    
+    const [orchid, setOrchid] = useState(null);
 
     useEffect(() => {
-        async function fetchData() {
-            try {
-                const response = await fetch(Data);
-                const data = await response.json();
-                setOrchids(data);
-            } catch (error) {
+        const getOrchid = async () => {
+            const q = query(collection(db, 'orquideas'), where(documentId(), '==', id));
+            const docs = [];
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+                docs.push({ ...doc.data(), id: doc.id });
+            });
+            setOrchid(docs[0]);
+        };
+        getOrchid();
+    }, [id]);
 
-                setError('Error al obtener los datos.');
-            }
-        }
-        fetchData();
-    }, []);
-
-    // const idFilter = id
-    const orchFilter = Data.filter((orc) => orc.id ==id )
-    
     return (
-        <ItemDetail orchids={orchFilter}
-    
-        />
+        <div>
+            {orchid && <ItemDetail orchid={orchid} />}
+        </div>
     );
 };
 
-
-export default ItemDetailContainer
-
-
+export default ItemDetailContainer;

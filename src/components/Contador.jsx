@@ -1,21 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Data from '../data.json';
-import { CartContext } from '../context/ShoppingCartContext';
-import Swal from 'sweetalert2';
 import { Button } from 'react-bootstrap';
 import carrito from '../imagenes/carrito3.png';
+import { CartContext } from '../context/ShoppingCartContext';
+import Swal from 'sweetalert2';
 
-const Contador = () => {
-    const { id } = useParams();
+const Contador = ({ orchid }) => {
     const [contador, setContador] = useState(1);
     const { addToCart } = useContext(CartContext);
-
-    const orchfind = Data.find((orc) => orc.id == id);
-    const avalaibleStock = orchfind.stock;
-    const price = orchfind.price;
-    const name = orchfind.nombre;
-    const img = orchfind.img;
+    const avalaibleStock = orchid.stock;
 
     const sumar = () => {
         if (contador < avalaibleStock) {
@@ -36,7 +28,8 @@ const Contador = () => {
     };
 
     const handleAddToCart = () => {
-        const item = { id, name, price, img, quantity: contador };
+        const { id, nombre, price, img } = orchid;
+        const item = { id, name: nombre, price, img, quantity: contador };
         addToCart(item);
     };
 

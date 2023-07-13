@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Data from '../data.json';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from './firebase/firebaseConfig';
 import ItemList from './ItemList';
 
 const ItemListContainer = () => {
@@ -9,22 +10,24 @@ const ItemListContainer = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        let filteredData = Data;
+        const getOrchids = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'orquideas'));
+                const docs = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+                setOrchids(docs);
+            } catch (error) {
+                setError(error.message);
+            }
+        };
 
-        if (category) {
-            filteredData = Data.filter((orchid) => orchid.category === category);
-        }
+        getOrchids();
+    }, []);
 
-        setOrchids(filteredData);
-    }, [category]);
+    const filteredOrchids = category ? orchids.filter((orchid) => orchid.category === category) : orchids;
 
     return (
         <>
-            {error ? (
-                <p>Error: {error}</p>
-            ) : (
-                <ItemList orchid={orchids} />
-            )}
+            {error ? <p>Error: {error}</p> : <ItemList orchids={filteredOrchids} />}
         </>
     );
 };
